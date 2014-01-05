@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+var path = require('path'),
+    fs = require('fs'),
+    util = require('util'),
+    argv = require('optimist').argv,
+    logger = require('tracer').console(),
+    urlHost = require('../lib/urlhost');
+
+var help = [
+    "usage: miller [options] ",
+    "",
+    "Starts a miller server using the specified command-line options",
+    "",
+    "options:",
+    " --port PORT Port that the server should run on",
+    " --host HOST Host that the server should run on",
+    " --t Start type of server",
+    " --c Start client connection to server",
+    " -h, --help You're staring at it"
+].join('\n');
+
+if (argv.h || argv.help || Object.keys(argv).length === 2) {
+  return util.puts(help);
+}
+
+if(argv.t || Object.keys(argv).length === 2){
+    util.puts('Get type ' + argv.t);
+    if(argv.t == 'url'){
+        logger.log('begin to build UrlHost on miller');
+
+        var server = new urlHost.UrlHost({reconnect: true, type: 'tcp4', port: 1215});
+
+        logger.log('end to build UrlHost on miller');
+    }
+}
+
+if(argv.c || Object.keys(argv).length === 2){
+    
+}
