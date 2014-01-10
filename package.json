@@ -28,7 +28,9 @@
         "eventemitter2": "~0.4.11",
         "lazy": "~1.0.11",
         "compute-cluster":"~0.0.7",
-        "tracer": "*"
+        "node-schedule":"*",
+        "tracer": "*",
+        "cheerio": "~0.13.0"
     },
     "devDependencies": {
         "grunt": "~0.4.1",

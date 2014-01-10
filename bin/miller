@@ -3,10 +3,13 @@
 var path = require('path'),
     fs = require('fs'),
     util = require('util'),
+    mconfig = require('../lib/config'),
     argv = require('optimist').argv,
     logger = require('tracer').console(),
     msocket = require('../lib/msocket'),
     urlHost = require('../lib/urlhost');
+    feeder = require('../lib/feedscheduler'),
+    pusher = require('../lib/client/urlpusher');
 
 var help = [
     "usage: miller [options] ",
@@ -18,6 +21,8 @@ var help = [
     " --host HOST Host that the server should run on",
     " --t Start type of server",
     " --c Start client connection to server",
+    " --f Start feed to server",
+    " --a mock push seeds to server",
     " -h, --help You're staring at it"
 ].join('\n');
 
@@ -36,7 +41,7 @@ if(argv.t || Object.keys(argv).length === 2){
     }
 }
 
-if(argv.c || Object.keys(argv).length === 2){
+if(argv.c){
     logger.info('begin build client socket.');
     var sock = msocket.MSocket();
 
@@ -47,8 +52,26 @@ if(argv.c || Object.keys(argv).length === 2){
     sock.data(['welcome'], function(data){
         logger.info(data);
 
-        sock.send('get_url');
+        sock.send(mconfig.events.urlRequestOnClient);
+
+        sock.send(mconfig.events.pushUrlsOnClient, {domain: 'chuguoqu.com', score: 89, url:'http://www.chuguoqu.com/line/0-0-0-0-1-0-0-1'});
+    });
+
+    sock.data(mconfig.events.urlResponseToClient, function(data){
+        logger.info(data);
     });
 
     logger.info('end build client socket.')
+}
+
+if(argv.f){
+
+    logger.debug('begin feed.')
+
+    var _feeder = new feeder.FeedScheduler({redisHost:'127.0.0.1',port:6379});
+    _feeder.start();
+}
+
+if(argv.a){
+    pusher.mockPush();
 }
