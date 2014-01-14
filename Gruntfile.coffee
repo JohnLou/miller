@@ -43,11 +43,19 @@ module.exports = ->
       all: ['test/*.coffee']
 
     # BDD tests on Node.js
-    cafemocha:
+    cofemocha:
       nodejs:
         src: ['spec/*.coffee']
         options:
           reporter: 'dot'
+
+
+    mochaTest:
+      test:
+        options:
+          reporter: 'spec'
+      src: ['spec/*.js']
+
 
     # Coding standards
     coffeelint:
@@ -69,6 +77,7 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-nodeunit'
   @loadNpmTasks 'grunt-cafe-mocha'
+  @loadNpmTasks 'grunt-mocha-test'
   @loadNpmTasks 'grunt-mocha-phantomjs'
   @loadNpmTasks 'grunt-coffeelint'
 
@@ -87,7 +96,11 @@ module.exports = ->
     @task.run 'coffee'
     if target is 'all'
       @task.run 'nodeunit'
-      @task.run 'cafemocha'
+      @task.run 'cofemocha'
+
+
+  @registerTask 'testjs', 'Build Miller and run automated tests', (target = 'all') =>
+    @task.run 'mochaTest'
 
   # Our local tasks
   @registerTask 'default', ['build']
