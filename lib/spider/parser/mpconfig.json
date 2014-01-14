@@ -1,0 +1,23 @@
+{
+    "name": "miller parsers config",
+    "description": "for config and register all parser on miller.",
+    "author": "John Lou<new.flar@gmail.com>",
+    "version": "0.0.1",
+    "dependencies": {
+
+    },
+    "json": [
+        "mpconfig.json"
+    ],
+    "miller":{
+        "parsers":[
+            {
+                "domain": "chuguoqu.com",
+                "description": "demo parser.",
+                "author": "John Lou<new.flar@gmail.com>",
+                "version": "0.0.1",
+                "main": "index.js"
+            }
+        ]
+    }
+}
