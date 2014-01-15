@@ -30,7 +30,7 @@ describe('parser', function(){
 
     describe('#load()', function(){
         it('should return demo parser for chuguoqu.com', function(){
-            var _p = new Parser('/home/evan/dev/miller/master/lib/spider/parser');
+            var _p = new Parser(__dirname +'/../lib/spider/parser');
 
             _p.load('chuguoqu.com', function(_par){
                 assert.equal('chuguoqu.com', _par.domain);
