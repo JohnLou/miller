@@ -8,17 +8,11 @@ var chai = require('chai');
 //});
 
 var assert = require("assert"),
+    http = require('http'),
+    request = require('request'),
     logger = require('tracer').console(),
-    Parser = require('../lib/spider/parser').Parser;
-
-describe('Array', function(){
-    describe('#indexOf()', function(){
-        it('should return -1 when the value is not present', function(){
-            assert.equal(-1, [1,2,3].indexOf(5));
-            assert.equal(-1, [1,2,3].indexOf(0));
-        })
-    })
-});
+    Parser = require('../lib/spider/parser').Parser,
+    Crawler = require('../lib/spider/crawler').Crawler;
 
 describe('parser', function(){
     describe('#isValidLink()', function(){
@@ -30,12 +24,27 @@ describe('parser', function(){
 
     describe('#load()', function(){
         it('should return demo parser for chuguoqu.com', function(){
-            var _p = new Parser(__dirname +'/../lib/spider/parser');
+            var _p = new Parser();
 
-            _p.load('chuguoqu.com', function(_par){
-                assert.equal('chuguoqu.com', _par.domain);
+            _p.load('www.chuguoqu.com', function(_par){
+                assert.equal('www.chuguoqu.com', _par.domain);
             });
+        });
+    });
+});
+
+describe('crawler', function(){
+    describe('#_crawl()', function(){
+
+        it('show body', function(done){
+
+//            this.timeout(15000);
+//            setTimeout(done, 15000);
+            var _c = new Crawler();
+            _c._crawl('http://www.chuguoqu.com/line/', done);
+
+            assert.equal(false, false);
         })
-    })
+    });
 });
 

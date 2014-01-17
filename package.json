@@ -31,7 +31,8 @@
         "node-schedule":"*",
         "tracer": "*",
         "cheerio": "~0.13.0",
-        "xregexp": "~2.0.0"
+        "xregexp": "~2.0.0",
+        "request": "~2.31.0"
     },
     "devDependencies": {
         "grunt": "~0.4.1",

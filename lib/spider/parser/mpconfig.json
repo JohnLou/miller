@@ -12,7 +12,7 @@
     "miller":{
         "parsers":[
             {
-                "domain": "chuguoqu.com",
+                "domain": "www.chuguoqu.com",
                 "description": "demo parser.",
                 "author": "John Lou<new.flar@gmail.com>",
                 "version": "0.0.1",
