@@ -35,7 +35,7 @@ if(argv.t || Object.keys(argv).length === 2){
     if(argv.t == 'url'){
         logger.log('begin to build UrlHost on miller');
 
-        var server = new urlHost.UrlHost({type: 'tcp4', port: 1215});
+        var server = new urlHost.UrlHost({type: 'tcp4', port: 1225});
 
         logger.log('end to build UrlHost on miller');
     }

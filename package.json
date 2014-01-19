@@ -32,7 +32,9 @@
         "tracer": "*",
         "cheerio": "~0.13.0",
         "xregexp": "~2.0.0",
-        "request": "~2.31.0"
+        "request": "~2.31.0",
+        "mongoose": ">=2.6.5",
+        "mongoskin": ">=0.3.7"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
